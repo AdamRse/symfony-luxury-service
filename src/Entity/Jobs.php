@@ -40,9 +40,6 @@ class Jobs
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dt_creation = null;
 
-    #[ORM\OneToMany(targetEntity: typeJobs::class, mappedBy: 'jobs')]
-    private Collection $type;
-
     #[ORM\OneToMany(targetEntity: Categories::class, mappedBy: 'jobs')]
     private Collection $categorie;
 
@@ -51,6 +48,9 @@ class Jobs
 
     #[ORM\ManyToOne(inversedBy: 'id_job')]
     private ?NotesJobs $notesJobs = null;
+
+    #[ORM\ManyToOne(inversedBy: 'jobs')]
+    private ?TypeJobs $type = null;
 
     public function __construct()
     {
@@ -160,36 +160,6 @@ class Jobs
     }
 
     /**
-     * @return Collection<int, typeJobs>
-     */
-    public function getType(): Collection
-    {
-        return $this->type;
-    }
-
-    public function addType(typeJobs $type): static
-    {
-        if (!$this->type->contains($type)) {
-            $this->type->add($type);
-            $type->setJobs($this);
-        }
-
-        return $this;
-    }
-
-    public function removeType(typeJobs $type): static
-    {
-        if ($this->type->removeElement($type)) {
-            // set the owning side to null (unless already changed)
-            if ($type->getJobs() === $this) {
-                $type->setJobs(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Categories>
      */
     public function getCategorie(): Collection
@@ -239,6 +209,18 @@ class Jobs
     public function setNotesJobs(?NotesJobs $notesJobs): static
     {
         $this->notesJobs = $notesJobs;
+
+        return $this;
+    }
+
+    public function getType(): ?TypeJobs
+    {
+        return $this->type;
+    }
+
+    public function setType(?TypeJobs $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

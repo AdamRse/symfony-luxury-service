@@ -22,11 +22,11 @@ class JobCandidates
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dt_creation = null;
 
-    #[ORM\OneToMany(targetEntity: jobs::class, mappedBy: 'jobCandidates')]
-    private Collection $id_job;
+    #[ORM\ManyToOne(inversedBy: 'jobCandidates')]
+    private ?Jobs $id_job = null;
 
-    #[ORM\OneToMany(targetEntity: Candidates::class, mappedBy: 'jobCandidates')]
-    private Collection $id_candidate;
+    #[ORM\ManyToOne(inversedBy: 'jobCandidates')]
+    private ?Candidates $id_candidate = null;
 
     public function __construct()
     {
@@ -63,62 +63,26 @@ class JobCandidates
         return $this;
     }
 
-    /**
-     * @return Collection<int, jobs>
-     */
-    public function getIdJob(): Collection
+    public function getIdJob(): ?Jobs
     {
         return $this->id_job;
     }
 
-    public function addIdJob(jobs $idJob): static
+    public function setIdJob(?Jobs $id_job): static
     {
-        if (!$this->id_job->contains($idJob)) {
-            $this->id_job->add($idJob);
-            $idJob->setJobCandidates($this);
-        }
+        $this->id_job = $id_job;
 
         return $this;
     }
 
-    public function removeIdJob(jobs $idJob): static
-    {
-        if ($this->id_job->removeElement($idJob)) {
-            // set the owning side to null (unless already changed)
-            if ($idJob->getJobCandidates() === $this) {
-                $idJob->setJobCandidates(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Candidates>
-     */
-    public function getIdCandidate(): Collection
+    public function getIdCandidate(): ?Candidates
     {
         return $this->id_candidate;
     }
 
-    public function addIdCandidate(Candidates $idCandidate): static
+    public function setIdCandidate(?Candidates $id_candidate): static
     {
-        if (!$this->id_candidate->contains($idCandidate)) {
-            $this->id_candidate->add($idCandidate);
-            $idCandidate->setJobCandidates($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdCandidate(Candidates $idCandidate): static
-    {
-        if ($this->id_candidate->removeElement($idCandidate)) {
-            // set the owning side to null (unless already changed)
-            if ($idCandidate->getJobCandidates() === $this) {
-                $idCandidate->setJobCandidates(null);
-            }
-        }
+        $this->id_candidate = $id_candidate;
 
         return $this;
     }

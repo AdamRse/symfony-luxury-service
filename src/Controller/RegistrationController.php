@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Candidates;
 use App\Form\RegistrationFormType;
 use App\Security\AuthAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,8 +31,10 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
             $entityManager->persist($user);
+            $candidate = new Candidates();
+            $candidate->setUser($user);
+            $entityManager->persist($candidate);
             $entityManager->flush();
 
             // do anything else you need here, like send an email

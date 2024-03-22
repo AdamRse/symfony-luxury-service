@@ -55,9 +55,6 @@ class Candidates
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dt_deleted = null;
 
-    #[ORM\ManyToOne(inversedBy: 'id_candidate')]
-    private ?JobCandidates $jobCandidates = null;
-
     #[ORM\ManyToOne(inversedBy: 'id_candidates')]
     private ?NotesCandidates $notesCandidates = null;
 
@@ -73,7 +70,10 @@ class Candidates
     #[ORM\OneToMany(targetEntity: Experiences::class, mappedBy: 'candidates')]
     private Collection $experience;
 
-    #[ORM\OneToOne(mappedBy: 'candidate', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: JobCandidates::class, mappedBy: 'id_candidate')]
+    private Collection $jobCandidates;
+
+    #[ORM\OneToOne(inversedBy: 'candidates', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
     public function __construct()
@@ -81,6 +81,7 @@ class Candidates
         $this->activity = new ArrayCollection();
         $this->nationality = new ArrayCollection();
         $this->experience = new ArrayCollection();
+        $this->jobCandidates = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -243,19 +244,12 @@ class Candidates
 
         return $this;
     }
+    // public function setJobCandidates(?JobCandidates $jobCandidates): static
+    // {
+    //     $this->jobCandidates = $jobCandidates;
 
-    public function getJobCandidates(): ?JobCandidates
-    {
-        return $this->jobCandidates;
-    }
-
-    public function setJobCandidates(?JobCandidates $jobCandidates): static
-    {
-        $this->jobCandidates = $jobCandidates;
-
-        return $this;
-    }
-
+    //     return $this;
+    // }
     public function getNotesCandidates(): ?NotesCandidates
     {
         return $this->notesCandidates;
@@ -370,6 +364,36 @@ class Candidates
         return $this;
     }
 
+    /**
+     * @return Collection<int, JobCandidates>
+     */
+    public function getJobCandidates(): Collection
+    {
+        return $this->jobCandidates;
+    }
+
+    public function addJobCandidate(JobCandidates $jobCandidate): static
+    {
+        if (!$this->jobCandidates->contains($jobCandidate)) {
+            $this->jobCandidates->add($jobCandidate);
+            $jobCandidate->setIdCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobCandidate(JobCandidates $jobCandidate): static
+    {
+        if ($this->jobCandidates->removeElement($jobCandidate)) {
+            // set the owning side to null (unless already changed)
+            if ($jobCandidate->getIdCandidate() === $this) {
+                $jobCandidate->setIdCandidate(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
@@ -377,16 +401,6 @@ class Candidates
 
     public function setUser(?User $user): static
     {
-        // unset the owning side of the relation if necessary
-        if ($user === null && $this->user !== null) {
-            $this->user->setCandidate(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($user !== null && $user->getCandidate() !== $this) {
-            $user->setCandidate($this);
-        }
-
         $this->user = $user;
 
         return $this;

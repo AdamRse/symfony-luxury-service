@@ -23,12 +23,12 @@
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                             <div class="input-field">
-                                <input type="email" name="email" id="email" value="{{ last_username }}"
+                                <input type="text" name="username" id="username" value="{{ last_username }}"
                                         required
                                         autofocus
                                         data-parsley-trigger="change"
-                                        data-parsley-error-message="A valid email address is required.">
-                                <label for="email">Email</label>
+                                        data-parsley-error-message="A valid username is required.">
+                                <label for="username">Username</label>
                                 <span class="help-block">Type your email address.</span>
                             </div>
                             <div class="input-field">
