@@ -10,16 +10,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}Luxury Services recruitment & services{% endblock %}</title>
+    <title>Luxury Services recruitment & services</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="idmkr.io">
-    <meta name="base_url" content="https://assets-luxury.projets.garage404.com">
-    <meta name="csrf-token" content="utSEZUUxgneXBCQY5My9Djz8rVhqLiG7PLq3ThDA">
+    <meta name="base_url" content="http://www.fgtechs.fr/z-pedro/wwwluxuryservices">
+    <meta name="csrf-token" content="9Tnm0YBCxgVTxoqI1HzccsU5NuE9RughZmhpzgXn">
     <!--  favicon -->
-    <link rel="shortcut icon" href="{{ asset('img/luxury-services-logo.png') }}">
+    <link rel="shortcut icon" href="assets/img/ico/fav.png">
 
     <script>
         window.isMobile = (function() {
@@ -32,17 +32,8 @@
         function onAppReady(handler) {
             $(handler);
         }
-        window.addEventListener('DOMContentLoaded', ()=> {
-            document.documentElement.classList.remove('boxshadow')
-        })
     </script>
-
-
-
-
-    <link href="{{ asset('styles/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('styles/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('styles/luxury.css') }}" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
 
     <link href="https://assets-luxury.projets.garage404.com/css/materialize.css" rel="stylesheet">
     <link href="https://assets-luxury.projets.garage404.com/css/bootstrap.css" rel="stylesheet">
@@ -85,10 +76,33 @@
     <script src="https://assets-luxury.projets.garage404.com/js/revolution-ext-migration.js"></script>
     <script src="https://assets-luxury.projets.garage404.com/js/revolution-ext-parallax.js"></script>
 
+    <style>
+        .page-title-bg {
+            background-image: url(../../assets/img/bg3.jpg);
+        }
+        .log-section form .checkbox label {
+            font-size: 16px
+        }
+        .log-section form .checkbox label a {
+            color: #b6a575;
+            text-decoration: underline;
+            text-transform: inherit;
+            font-size: 16px
+        }
+        .log-section form .links a {
+            display: block;
+            text-align: center;
+            color: #b6a575;
+            text-decoration: underline;
+            text-transform: inherit;
+            font-size: 16px
+        }
+    </style>
 </head>
 
 <body id="top">
 
+<!-- Navigation -->
 <!-- Navigation -->
 <header id="header" class="tt-nav transparent-header ">
     <div class="header-sticky semi-transparent">
@@ -127,12 +141,12 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="menuzord-menu pull-right light" role="navigation">
                         <li class=" dropdown">
-                            <a target="_self" href="{{ path('app_login') }}">
+                            <a target="_self" href="/templates/auth/login.html">
                                 <span>Login</span>
                             </a>
                         </li>
                         <li class=" dropdown">
-                            <a target="_self" href="{{ path('app_register') }}" class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
+                            <a target="_self" href="/templates/auth/register.html" class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
                                 <span>Sign Up</span>
                             </a>
 
@@ -170,9 +184,83 @@
     </div>
 </header>
 <div class="base">
+
+    <!-- Page -->
     <div class="page">
-    {% block body %}{% endblock %}
+
+        <!-- Page Header-->
+        <section class="page-title page-title-bg fixed-bg overlay dark-5 padding-top-160 padding-bottom-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="white-text">Register</h2>
+                        <span class="white-text">Welcome on board</span>
+                        <ol class="breadcrumb">
+                            <li><a href="#!">Home</a></li>
+                            <li class="active">Register</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Page Content-->
+        <section class="section-padding gray-bg log-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 card card-panel">
+                        <h3 class="text-extrabold">Create a new account</h3>
+                        <form id="register-form" role="form" method="post" accept-char="UTF-8" autocomplete="off" data-parsley-validate>
+
+                            <input type="hidden" name="_token" value="">
+
+                            <div class="input-field">
+                                <input type="email" name="email" id="email" value=""
+                                       required
+                                       data-parsley-trigger="change"
+                                       data-parsley-error-message="A valid email address is required.">
+                                <label for="email">Email</label>
+                                <span class="help-block">Type your email address.</span>
+                            </div>
+                            <div class="input-field">
+                                <input type="password" name="password" id="password" value=""
+                                       required
+                                       data-parsley-trigger="change"
+                                       data-parsley-minlength="6"
+                                       data-parsley-error-message="The password must be at least 6 characters.">
+                                <label for="password">Password</label>
+                                <i class="fa fa-eye show-password"></i>
+                                <span class="help-block">Type your password.</span>
+                            </div>
+                            <div class="input-field">
+                                <input type="password" name="password_confirmation" id="password_confirmation" value=""
+                                       required
+                                       data-parsley-trigger="change"
+                                       data-parsley-equalto="#password"
+                                       data-parsley-error-message="Password does not match.">
+                                <label for="password_confirmation">Confirm Password</label>
+                                <i class="fa fa-eye show-password"></i>
+                                <span class="help-block">Confirm your password.</span>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="accept-terms" value="1" id="accept-terms" required/>
+                                <label for="accept-terms">I have read and I accept the <a href="#!" target="_blank">Terms Of Use</a></label>
+                            </div>
+
+                            <button type="submit" class="btn btn-lg gradient secondary btn-block waves-effect waves-light mt-20 mb-20">Create an account</button>
+                            <div class="links">
+                                <a href="/login.html">Already have an account? Click here</a>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
     </div>
+
 </div>
 
 <!-- Footer -->
@@ -195,7 +283,7 @@
                 <div class="col-md-12">
                     <div class="brand footer-brand"></div>
 
-                    <span class="copy-text">© 2019 All right reserved - by <a href="https://idmkr.io/" target="_blank">IDMKR</a> - <a href="#!">Terms of use</a>
+                    <span class="copy-text">© 2018 All right reserved - by <a href="https://idmkr.io/" target="_blank">IDMKR</a> - <a href="#!">Terms of use</a>
 
                     </span>
                     <div class="footer-intro">
@@ -215,17 +303,17 @@
                     </a>
                 </li>
                 <li class=" dropdown">
-                    <a target="_self" href="/template/jobs/jobs.html">
+                    <a target="_self" href="/jobs.html">
                         <span>Jobs offers</span>
                     </a>
                 </li>
                 <li class=" dropdown">
-                    <a target="_self" href="/templates/compagny.html">
+                    <a target="_self" href="/about-us.html">
                         <span>About us</span>
                     </a>
                 </li>
                 <li class=" dropdown">
-                    <a target="_self" href="/templates/contact.html">
+                    <a target="_self" href="/contact.html">
                         <span>Contact</span>
                     </a>
                 </li>
@@ -234,74 +322,14 @@
     </div><!-- /.secondary-footer -->
 </footer>
 
-{% block javascripts %}
-    {% block importmap %}{{ importmap('app') }}{% endblock %}
-{% endblock %}
-<!-- RS5.0 Init  -->
+
 <script type="text/javascript">
-    document.querySelector(".rev_slider_wrapper").setAttribute("style",
-        "background:url('assets/img"+(
-            isMobile ?
-                "/bg1.jpg":
-                "/bg3.jpg"
-        ) + "');" +
-        "background-size:cover;"+
-        "background-position: center center;"+
-        "height:"+window.innerHeight+"px"
-    );
 
     onAppReady(function() {
         $('.preload').remove();
-        $(".materialize-slider").revolution({
-            sliderType:"standard",
-            sliderLayout:"fullscreen",
-            delay:20000,
-            navigation: {
-                keyboardNavigation: "on",
-                keyboard_direction: "horizontal",
-                mouseScrollNavigation: "off",
-                onHoverStop: "off",
-                touch: {
-                    touchenabled: "on",
-                    swipe_threshold: 75,
-                    swipe_min_touches: 1,
-                    swipe_direction: "horizontal",
-                    drag_block_vertical: false
-                },
-                arrows: {
-                    style: "gyges",
-                    enable: true,
-                    hide_onmobile: false,
-                    hide_onleave: true,
-                    tmp: '',
-                    left: {
-                        h_align: "left",
-                        v_align: "center",
-                        h_offset: 10,
-                        v_offset: 0
-                    },
-                    right: {
-                        h_align: "right",
-                        v_align: "center",
-                        h_offset: 10,
-                        v_offset: 0
-                    }
-                }
-            },
-            responsiveLevels:[1240,1024,778,480],
-            gridwidth:[1240,1024,778,480],
-            gridheight:[700,600,500,500],
-            disableProgressBar:"on",
-            parallax: {
-                type:"mouse",
-                origo:"slidercenter",
-                speed:2000,
-                levels:[2,3,4,5,6,7,12,16,10,50],
-            }
-
-        });
     });
 </script>
 
 </body>
 </html>
+

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <!-- Page Content-->
+    <section class="section-padding gray-bg log-section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="card card-panel">
+                        <h3 class="text-extrabold">Log in to your account</h3>
+                        <form id="login-form" role="form" method="post" accept-char="UTF-8" autocomplete="off" data-parsley-validate>
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                </div>
+                            {% endif %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                            <div class="input-field">
+                                <input type="email" name="email" id="email" value="{{ last_username }}"
+                                        required
+                                        autofocus
+                                        data-parsley-trigger="change"
+                                        data-parsley-error-message="A valid email address is required.">
+                                <label for="email">Email</label>
+                                <span class="help-block">Type your email address.</span>
+                            </div>
+                            <div class="input-field">
+                                <input type="password" name="password" id="password"
+                                        required
+                                        data-parsley-trigger="change"
+                                        data-parsley-error-message="The password must be at least 6 characters.">
+                                <label for="password">Password</label>
+                                <i class="fa fa-eye show-password"></i>
+                                <span class="help-block">Type your password.</span>
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" id="keep-logged" name="remember" value="1" />
+                                <label for="keep-logged">Keep me logged in</label>
+                            </div>
+                            <button type="submit" class="btn btn-lg gradient secondary btn-block waves-effect waves-light mt-20 mb-20">Login</button>
+                            <div class="links">
+                                <a href="#!">Forgot your password?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-8">
+                    <div class="card card-panel ptb-70 text-center">
+                        <div class="promo-info">
+                            <h1 class="text-uppercase mb-30 text-extrabold font-30">New to Luxury Services ?</h1>
+                            <p class="width-60 mb-30">Joining us is allowing our recruitment expertise and personal guidance to bring the best out in you by choosing the most suited position.</p>
+                            <a href="{{ path('app_register') }}" class="btn btn-lg gradient secondary waves-effect waves-light mt-20"><span>Sign-up<strong> Free</strong></span></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

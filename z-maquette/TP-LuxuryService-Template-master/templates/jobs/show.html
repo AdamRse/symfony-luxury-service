@@ -10,16 +10,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}Luxury Services recruitment & services{% endblock %}</title>
+    <title>Luxury Services recruitment & services</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="idmkr.io">
-    <meta name="base_url" content="https://assets-luxury.projets.garage404.com">
-    <meta name="csrf-token" content="utSEZUUxgneXBCQY5My9Djz8rVhqLiG7PLq3ThDA">
+    <meta name="base_url" content="http://www.fgtechs.fr/z-pedro/wwwluxuryservices">
+    <meta name="csrf-token" content="9Tnm0YBCxgVTxoqI1HzccsU5NuE9RughZmhpzgXn">
     <!--  favicon -->
-    <link rel="shortcut icon" href="{{ asset('img/luxury-services-logo.png') }}">
+    <link rel="shortcut icon" href="assets/img/ico/fav.png">
 
     <script>
         window.isMobile = (function() {
@@ -32,17 +32,8 @@
         function onAppReady(handler) {
             $(handler);
         }
-        window.addEventListener('DOMContentLoaded', ()=> {
-            document.documentElement.classList.remove('boxshadow')
-        })
     </script>
-
-
-
-
-    <link href="{{ asset('styles/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('styles/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('styles/luxury.css') }}" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
 
     <link href="https://assets-luxury.projets.garage404.com/css/materialize.css" rel="stylesheet">
     <link href="https://assets-luxury.projets.garage404.com/css/bootstrap.css" rel="stylesheet">
@@ -90,6 +81,7 @@
 <body id="top">
 
 <!-- Navigation -->
+<!-- Navigation -->
 <header id="header" class="tt-nav transparent-header ">
     <div class="header-sticky semi-transparent">
         <div class="container">
@@ -127,12 +119,12 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="menuzord-menu pull-right light" role="navigation">
                         <li class=" dropdown">
-                            <a target="_self" href="{{ path('app_login') }}">
+                            <a target="_self" href="/templates/auth/login.html">
                                 <span>Login</span>
                             </a>
                         </li>
                         <li class=" dropdown">
-                            <a target="_self" href="{{ path('app_register') }}" class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
+                            <a target="_self" href="/templates/auth/register.html" class="btn bn-lg gradient secondary btn-block waves-effect waves-light btn-register">
                                 <span>Sign Up</span>
                             </a>
 
@@ -170,9 +162,86 @@
     </div>
 </header>
 <div class="base">
+
+    <!-- Page -->
     <div class="page">
-    {% block body %}{% endblock %}
+
+        <!-- Page Header-->
+        <section class="page-title page-title-bg fixed-bg overlay dark-5 padding-top-160 padding-bottom-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="white-text">2nd assistant position</h2>
+                        <span class="white-text">Ref. 1007</span>
+                        <ol class="breadcrumb">
+                            <li>
+                                <div class="portfolio-nav">
+                                    <a href="#!" class="waves-effect waves-dark"><i class="fa fa-angle-left" aria-hidden="true"></i> Prev</a>
+                                    <a href="#!" class="waves-effect waves-dark"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+                                    <a href="#!" class="waves-effect waves-dark">Next <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Content-->
+        <section class="single-project-section section-padding light-gray-bg">
+            <div class="container">
+                <div class="project-overview">
+                    <div class="row mb-80">
+                        <div class="col-xs-12 col-md-8">
+                            <p class="ref grey-text no-margin">Ref. 1007</p>
+                            <h2>2nd assistant position</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec tortor venenatis, consequat quam et, varius lorem. Vivamus auctor vehicula odio, non scelerisque nibh cursus maximus. Sed hendrerit eros libero, vel accumsan nisi sagittis sit amet. Vivamus vitae neque convallis, consectetur lectus ac, pellentesque massa. Morbi finibus faucibus lorem vel placerat. Vivamus neque ligula, lacinia ac arcu sed, egestas mattis felis. Pellentesque tincidunt nulla lorem, ut sollicitudin metus volutpat ut. Vivamus et dignissim elit. </p>
+                            <p>Vivamus id congue massa. Praesent ornare ipsum dolor, ut semper sapien tempus non. Integer eget dui vehicula nisi rutrum interdum et id turpis. Nam eu mollis sem. Aenean in hendrerit neque. Morbi rhoncus lacinia risus ac mattis. Pellentesque a mauris sapien. Nunc sit amet accumsan massa. Nulla gravida porttitor luctus. Aliquam fringilla at quam non euismod. Phasellus eu gravida eros. Cras odio risus, blandit non suscipit sed, volutpat vitae nulla. In ultrices at leo sit amet interdum.</p>
+                        </div>
+
+                        <div class="col-xs-12 col-md-4 quick-overview">
+                            <ul class="portfolio-meta">
+                                <li><span> Pulished at </span>24 May 18</li>
+                                <li><span> Position </span>2nd Engineer</li>
+                                <li><span> Contract Type </span>Full Time</li>
+                                <li><span> Salary </span>45k &euro;</li>
+                                <li><span> Location </span>Paris</li>
+                                <li><span> Starting date </span>2018-05-18</li>
+                            </ul>
+                            <a class="btn btn-block gradient primary mt-30 waves-effect waves-light" href="#!">Apply for this job</a>
+                            <div class="btn btn-block btn-success mt-30 waves-effect waves-light disabled">You have applied for this job</div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="single-post-navigation no-margin" role="navigation">
+                    <div class="row">
+
+                        <div class="col-xs-6 col-sm-6 col-md-4">
+                            <div class="previous-post-link">
+                                <a class="btn border primary waves-effect waves-dark" href="#!">
+                                    <i class="fa fa-long-arrow-left"></i>Previous
+                                </a>
+                            </div>
+                        </div>
+                        <div class="hidden-xs hidden-sm col-md-4"></div>
+
+
+                        <div class="col-xs-6 col-sm-6 col-md-4">
+                            <div class="next-post-link">
+                                <a class="btn border primary waves-effect waves-dark" href="#!">
+                                    Next <i class="fa fa-long-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </nav>
+            </div>
+        </section>
+
     </div>
+
 </div>
 
 <!-- Footer -->
@@ -195,7 +264,7 @@
                 <div class="col-md-12">
                     <div class="brand footer-brand"></div>
 
-                    <span class="copy-text">© 2019 All right reserved - by <a href="https://idmkr.io/" target="_blank">IDMKR</a> - <a href="#!">Terms of use</a>
+                    <span class="copy-text">© 2018 All right reserved - by <a href="https://idmkr.io/" target="_blank">IDMKR</a> - <a href="#!">Terms of use</a>
 
                     </span>
                     <div class="footer-intro">
@@ -215,17 +284,17 @@
                     </a>
                 </li>
                 <li class=" dropdown">
-                    <a target="_self" href="/template/jobs/jobs.html">
+                    <a target="_self" href="/jobs.html">
                         <span>Jobs offers</span>
                     </a>
                 </li>
                 <li class=" dropdown">
-                    <a target="_self" href="/templates/compagny.html">
+                    <a target="_self" href="/about-us.html">
                         <span>About us</span>
                     </a>
                 </li>
                 <li class=" dropdown">
-                    <a target="_self" href="/templates/contact.html">
+                    <a target="_self" href="/contact.html">
                         <span>Contact</span>
                     </a>
                 </li>
@@ -234,74 +303,14 @@
     </div><!-- /.secondary-footer -->
 </footer>
 
-{% block javascripts %}
-    {% block importmap %}{{ importmap('app') }}{% endblock %}
-{% endblock %}
-<!-- RS5.0 Init  -->
+
 <script type="text/javascript">
-    document.querySelector(".rev_slider_wrapper").setAttribute("style",
-        "background:url('assets/img"+(
-            isMobile ?
-                "/bg1.jpg":
-                "/bg3.jpg"
-        ) + "');" +
-        "background-size:cover;"+
-        "background-position: center center;"+
-        "height:"+window.innerHeight+"px"
-    );
 
     onAppReady(function() {
         $('.preload').remove();
-        $(".materialize-slider").revolution({
-            sliderType:"standard",
-            sliderLayout:"fullscreen",
-            delay:20000,
-            navigation: {
-                keyboardNavigation: "on",
-                keyboard_direction: "horizontal",
-                mouseScrollNavigation: "off",
-                onHoverStop: "off",
-                touch: {
-                    touchenabled: "on",
-                    swipe_threshold: 75,
-                    swipe_min_touches: 1,
-                    swipe_direction: "horizontal",
-                    drag_block_vertical: false
-                },
-                arrows: {
-                    style: "gyges",
-                    enable: true,
-                    hide_onmobile: false,
-                    hide_onleave: true,
-                    tmp: '',
-                    left: {
-                        h_align: "left",
-                        v_align: "center",
-                        h_offset: 10,
-                        v_offset: 0
-                    },
-                    right: {
-                        h_align: "right",
-                        v_align: "center",
-                        h_offset: 10,
-                        v_offset: 0
-                    }
-                }
-            },
-            responsiveLevels:[1240,1024,778,480],
-            gridwidth:[1240,1024,778,480],
-            gridheight:[700,600,500,500],
-            disableProgressBar:"on",
-            parallax: {
-                type:"mouse",
-                origo:"slidercenter",
-                speed:2000,
-                levels:[2,3,4,5,6,7,12,16,10,50],
-            }
-
-        });
     });
 </script>
 
 </body>
 </html>
+
