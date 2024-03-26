@@ -18,6 +18,9 @@ class Activity
 
     #[ORM\ManyToOne(inversedBy: 'activity')]
     private ?Candidates $candidates = null;
+    public function __toString(): string{
+       return $this->label;
+    }
 
     public function getId(): ?int
     {

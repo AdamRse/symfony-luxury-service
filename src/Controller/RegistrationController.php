@@ -19,31 +19,40 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_homie');
+        }
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        $errorSameUser = false;
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-            $entityManager->persist($user);
-            $candidate = new Candidates();
-            $candidate->setUser($user);
-            $entityManager->persist($candidate);
-            $entityManager->flush();
+        if ($form->isSubmitted()){
+            if($form->isValid()){
+                // encode the plain password
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
+                $entityManager->persist($user);
+                $candidate = new Candidates();
+                $candidate->setUser($user);
+                $entityManager->persist($candidate);
+                $entityManager->flush();
 
-            // do anything else you need here, like send an email
+                // do anything else you need here, like send an email
 
-            return $security->login($user, AuthAuthenticator::class, 'main');
+                return $security->login($user, AuthAuthenticator::class, 'main');
+            }
+            else
+                $errorSameUser = $form->get('plainPassword')->getData();
         }
 
         return $this->render('auth/register.html.twig', [
             'registrationForm' => $form,
+            'errorSameUser' => $errorSameUser
         ]);
     }
 }

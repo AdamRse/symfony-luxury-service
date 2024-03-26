@@ -18,6 +18,9 @@ class Nationalities
 
     #[ORM\ManyToOne(inversedBy: 'nationality')]
     private ?Candidates $candidates = null;
+    public function __toString(): string{
+       return $this->country;
+    }
 
     public function getId(): ?int
     {

@@ -19,6 +19,10 @@ class Categories
     #[ORM\ManyToOne(inversedBy: 'categorie')]
     private ?Jobs $jobs = null;
 
+    public function __toString(): string{
+        return $this->label;
+     }
+
     public function getId(): ?int
     {
         return $this->id;

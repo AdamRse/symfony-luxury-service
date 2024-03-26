@@ -18,6 +18,9 @@
                                 {{ form_widget(registrationForm.username, { 'id': 'email' }) }}
                                 <label for="email">Username</label>
                                 <span class="help-block">Type your username.</span>
+                                {% if errorSameUser %}
+                                    <span id="spanErrorUser" data-pw="{{ errorSameUser }}" class="text-danger">Username not available.</span>
+                                {% endif %}
                             </div>
                             <div class="input-field">
                                 {{ form_widget(registrationForm.plainPassword, { 'id': 'password' }) }}
@@ -51,3 +54,20 @@
             </div>
         </section>
 {% endblock %}
+{% block javascripts %}
+    {% if errorSameUser %}
+        <span class="text-danger">Username not available.</span>
+        <script>
+            let boxEmail = document.querySelector("#email");
+            let boxWarning = document.querySelector("#spanErrorUser");
+            document.querySelector('#password').value = boxWarning.dataset.pw;
+            document.querySelector('#password_confirmation').value = boxWarning.dataset.pw;
+            boxEmail.style.backgroundColor = "#ed9aa2";
+            boxEmail.addEventListener("keypress", function(){
+                this.style.backgroundColor = "#fff";
+                boxWarning.style.display = "none";
+            });
+        </script>
+    {% endif %}
+{% endblock %}
+
