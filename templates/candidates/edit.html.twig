@@ -25,10 +25,8 @@
                 <div class="container">
                     <div class="row">
                         <h3 class="text-extrabold">Your personal informations</h3>
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                                <label for="">Gender</label>
-    
-                                {{ form_widget(form.gender)}}
+                        <div class="col-xs-12 col-sm-6 col-md-4">    
+                                {{ form_row(form.gender)}}
                            
                         </div>
                         <div class="clearfix visible-sm"></div>
@@ -44,9 +42,9 @@
                             
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-8">
+                        <div class="col-xs-12 col-sm-6">
                             <div class="input-field">
-                                {{ form_row(form.Address)}}
+                                {{ form_row(form.email)}}
                                
                             </div>
                         </div>
@@ -57,7 +55,7 @@
                                  style="margin-top: 32px;">
                                 <div class="btn btn-lg primary waves-effect waves-light">
                                     <span><i class="material-icons">insert_photo</i> Photo</span>
-                                    {{ form_row(form.Profil_picture)}}
+                                    <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" />
                                 </div>
 
                                 <div class="existing-file">
@@ -70,9 +68,9 @@
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-8">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-12">
                                     <div class="input-field">
-                                        {{ form_row(form.Country)}}
+                                        {{ form_row(form.address)}}
                                         
                                     </div>
                                 </div>
